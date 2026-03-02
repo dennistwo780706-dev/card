@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our 2nd Anniversary</title>
+    <style>
+        :root { --main-bg: #fff5f7; --text-color: #5a5a5a; --accent: #ffb7c5; }
+        body { margin: 0; background: var(--main-bg); font-family: "PingFang TC", sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        
+        #book { width: 380px; height: 600px; position: relative; perspective: 1500px; }
+        .page { width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: none; padding: 30px; box-sizing: border-box; text-align: center; transition: 0.5s; }
+        .active { display: block; animation: fadeIn 0.8s; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* 照片網格樣式 */
+        .photo-grid { display: grid; gap: 10px; margin: 20px 0; }
+        .grid-1 { grid-template-columns: 1fr; }
+        .grid-2 { grid-template-columns: 1fr 1fr; }
+        .grid-3 { grid-template-areas: "a a" "b c"; }
+        .photo-box { background: #eee; border-radius: 10px; overflow: hidden; height: 150px; background-size: cover; background-position: center; border: 3px solid white; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+
+        h2 { color: var(--text-color); margin-bottom: 10px; font-size: 1.4em; }
+        p { color: #777; font-size: 0.95em; line-height: 1.0; }
+        .btn-nav { position: absolute; bottom: 20px; width: 80%; left: 10%; display: flex; justify-content: space-between; z-index: 10; }
+        button { background: var(--accent); border: none; padding: 8px 15px; border-radius: 20px; color: white; cursor: pointer; }
+        
+        /* 封面專用 */
+        .cover { background-image: url('cover.jpg'); background-size: cover; color: white; }
+        .cover-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.3); border-radius: 15px; padding: 30px; display: flex; flex-direction: column; justify-content: center; }
+        #timer { font-size: 0.9em; margin: 15px 0; background: rgba(255,255,255,0.2); padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<audio id="bgm" src="能不能和我留在台北陪我幾天.mp3" loop></audio>
+
+<div id="book">
+    <div class="page active cover">
+        <div class="cover-overlay">
+            <h1>2nd Anniversary</h1>
+            <div>我們的故事，待續書寫中...</div>
+            <button onclick="nextPage(); playMusic()">點擊開啟回憶</button>
+        </div>
+    </div>
+
+    <div class="page">
+        <h2>一起出國</h2>
+        <div class="photo-grid grid-3">
+            <div class="photo-box" style="background-image: url('p1_1.jpg');"></div>
+            <div class="photo-box" style="background-image: url('p1_2.jpg');"></div>
+			<div class="photo-box" style="grid-area: b; height: 180px; background-image: url('p1_3.jpg');"></div>
+        </div>
+        <p>一周年的我們一起出國</p>
+    </div>
+
+    <div class="page">
+        <h2>一起聽演唱會</h2>
+        <div class="photo-grid grid-2">
+            <div class="photo-box" style="background-image: url('p2_1.jpg');"></div>
+            <div class="photo-box" style="background-image: url('p2_2.jpg');"></div>
+            <div class="photo-box" style="background-image: url('p2_3.jpg');"></div>
+        </div>
+        <p>一起聽團一起嗨</p>
+    </div>
+
+    <div class="page">
+        <h2>一起爬山</h2>
+        <div class="photo-grid grid-2">
+            <div class="photo-box" style="background-image: url('p3_1.jpg');"></div>
+            <div class="photo-box" style="background-image: url('p3_2.jpg');"></div>
+			<div class="photo-box" style="background-image: url('p3_3.jpg');"></div>
+        </div>
+        <p>爬山看大景 下山臉臭臭</p>
+    </div>
+	
+	<div class="page">
+        <h2>一起吃吃吃</h2>
+        <div class="photo-grid grid-2">
+            <div class="photo-box" style="background-image: url('p4_1.jpg');"></div>
+			<div class="photo-box" style="background-image: url('p4_2.jpg');"></div>
+			<div class="photo-box" style="background-image: url('p4_3.jpg');"></div>
+			<div class="photo-box" style="background-image: url('p4_4.jpg');"></div>
+        </div>
+        <p></p>
+    </div>
+	
+	<div class="page">
+        <h2>一起吃吃吃</h2>
+        <div class="photo-grid grid-2">
+			<div class="photo-box" style="background-image: url('p4_5.jpg');"></div>
+			<div class="photo-box" style="background-image: url('p4_6.jpg');"></div>
+			<div class="photo-box" style="background-image: url('p4_7.jpg');"></div>
+        </div>
+        <p></p>
+    </div>
+
+    <div class="page">
+        <h2>一起過未來的生活</h2>
+        <div class="photo-grid grid-1">
+            <div class="photo-box" style="height: 250px; background-image: url('p5_1.jpg');"></div>
+        </div>
+        <p align=left>每次翻照片總會幸福的微笑，我們一起到處吃到處玩，一起運動一起耍廢，一起布置了屬於我們的小小套房，
+		   一直都覺得很幸運能夠遇到妳，不管各方面都很契合，謝謝寶貝同居包容了我很多事情，雖然偶爾還是會惹你生氣，但我會努力當個棒棒的老公</p>
+		<p align=left>未來我們還是會一起度過生活大大小小的事，唯一不一樣的是你被我綁回家嘍</p>
+		<p>老婆❤️❤️❤️</p>
+    </div>
+
+    <div class="page">
+        <h1 style="margin-top: 100px;">I Love You</h1>
+        <div style="font-size: 50px; margin: 30px 0;">❤️</div>
+        <p>二週年快樂，我最愛的老婆。</p>
+        <button onclick="location.reload()" style="margin-top: 50px;">重新回顧</button>
+    </div>
+
+    <div class="btn-nav" id="nav">
+        <button onclick="prevPage()">上一頁</button>
+        <button onclick="nextPage()">下一頁</button>
+    </div>
+</div>
+
+<script>
+    let currentPage = 0;
+    const pages = document.querySelectorAll('.page');
+    const nav = document.getElementById('nav');
+	updatePage();
+
+    function updatePage() {
+        pages.forEach((p, i) => p.classList.toggle('active', i === currentPage));
+        nav.style.display = (currentPage === 0 || currentPage === pages.length - 1) ? 'none' : 'flex';
+    }
+
+    function nextPage() { if (currentPage < pages.length - 1) { currentPage++; updatePage(); } }
+    function prevPage() { if (currentPage > 0) { currentPage--; updatePage(); } }
+
+    function playMusic() { document.getElementById('bgm').play(); }
+</script>
+
+</body>
+</html>
